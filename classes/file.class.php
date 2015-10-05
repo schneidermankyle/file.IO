@@ -73,7 +73,7 @@ class file
 	private function processError($error = NULL, $dump = NULL) {
 		// This function's sole purpose to figure out how to handle errors.
 		// In the future,  I would like to expand on this and perhaps include more options like json
-		if (isset($error) && $this->logging ) {
+		if (isset($error)) {
 			// Echo or dump error directly to screen
 			if (!$this->mode === 'development') {
 				// Then we need to senser ourselves.
