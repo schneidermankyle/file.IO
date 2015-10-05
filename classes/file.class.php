@@ -182,24 +182,25 @@ class file
 				break;
 		}
 
+		// The length to first closing block
 		$firstLength = strpos($this->contentString, '}', $start) - $start + 1;
-		// We need a start point and length
-		$blocks = substr_count($this->contentString, '{', $start, );
+		// Determine how many blocks have opened within this span
+		$blockCount = substr_count($this->contentString, '{', $start, $firstLength);
 
-		if ($blocks > 1) {
+		// There are officially sub blocks
+		if ($blockCount > 1) {
+			// Store an integer of the closing block we are working with.
 			$lastFound = strpos($this->contentString, '}', $start);
 
-			for ($i = 1; $i <= $blocks, $i++) {
-				// Fore ach loop, we need to see if we can find the corrosponding break line
+			for ($i = 1; $i <= $blockCount, $i++) {
+				// Loop through each opening block to see if we can find the corrosponding break line. 
+				// If any more open blocks are found in between, add it to the blockCount.
 
 			}
 		}
-
-		// Need to determine if there is anny other occurances of '{' before end
 	
-		$temp =  substr($this->contentString, $start, $length);
+		// $temp =  substr($this->contentString, $start, $length);
 
-		// So now let's parse the string
 
 	}
 
