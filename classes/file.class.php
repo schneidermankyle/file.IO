@@ -119,7 +119,10 @@ class file
 	public function __construct($path, $name = null)
 	{
 		// Make sure error logs are ready.
-		$this->prepareLogs();
+        if ($this->logging === TRUE) {
+		  $this->prepareLogs();
+        }
+
 
 		// See what kind of file we should be working with
 		// If path is simply a pointer to directory we will look to create a new file with name
