@@ -100,6 +100,9 @@ class file
 					$i++;
 				}
 				$errorString .= ' )' . PHP_EOL;
+                if ($dump) {
+                  $errorString .= ' - External Dump' . (string)$dump . PHP_EOL;  
+                }
 
 				
 				$errorLog = fopen($this->logFile.'/logs/file.log', 'a+');
