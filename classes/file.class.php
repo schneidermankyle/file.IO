@@ -180,7 +180,12 @@ class file
 
 		switch ($this->type) {
 			case 'php':
-				$start = strpos($this->contentString, 'function $'.$functionName);
+				// Now supports php classes
+				preg_match('/((private|public)(\s)*)?(function){1}(\s){1,}(\$)?('.$functionName.')/', $this->contentString, $output_array, PREG_OFFSET_CAPTURE);
+				$start = intval($output_array[0][1]);
+				// var_dump($output_array[0]);
+				// If this is less than optimal, 
+				// $start = strpos($this->contentString, $output_array[0]);
 				break;
 			case 'js':
 				break;
@@ -196,17 +201,20 @@ class file
 		// There are officially sub blocks
 		if ($blockCount > 1) {
 			// Store an integer of the closing block we are working with.
-			$lastFound = strpos($this->contentString, '}', $start);
+			$lastFound = $start;
+			$newLength;
 
-			for ($i = 1; $i <= $blockCount, $i++) {
+			for ($i = 1; $i <= $blockCount; $i++) {
 				// Loop through each opening block to see if we can find the corrosponding break line. 
 				// If any more open blocks are found in between, add it to the blockCount.
-
+				$lastFound = strpos($this->contentString, '}', $lastFound) + 1;
+				$newLength = $lastFound - $start;
+				$blockCount = substr_count($this->contentString, '{', $start, $newLength);
+				// if more opens are found, addto block count.
 			}
-		}
-	
-		// $temp =  substr($this->contentString, $start, $length);
 
+			return substr($this->contentString, $start, $newLength);
+		} return substr($this->contentString, $start, $firstLength);
 
 	}
 
