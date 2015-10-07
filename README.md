@@ -20,18 +20,18 @@ if ($file->IsOpen) {
 	echo ($file->path);
 
 	// PHP/JS //
-	$file->returnFunction($function);
-	$file->returnVariable($variable);
+	$file->returnFunction('functionName');
+	$file->returnVariable('variableName');
 	$file->returnObject($object);
-	$file->replaceFunction($function);
-	$file->replaceVariable($variable);
+	$file->replaceFunction('functionName', $newFunctionText);
+	$file->replaceVariable('variableName', $newVariableValue);
 	$file->replaceObject($object);
 	$file->insertFunction($funtion);
 	$file->insertVariable($variable);
 	$file->insertObject($variable);
 
 	// HTML //
-	$file->returnElement('element', $method = 'class');
+	$file->returnElement('element');
 	$file->replaceElement('element', $occourance = (int)1);
 	$file->insertElement($html, $where = 'body');
 
